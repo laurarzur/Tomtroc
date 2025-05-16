@@ -46,6 +46,24 @@ class DBManager
     public function getPDO() : PDO
     {
         return $this->db;
+    } 
+
+    /**
+     * Méthode qui permet d'exécuter une requête SQL.
+     * Si des paramètres sont passés, on utilise une requête préparée.
+     * @param string $sql : la requête SQL à exécuter.
+     * @param array|null $params : les paramètres de la requête SQL.
+     * @return PDOStatement : le résultat de la requête SQL.
+     */
+    public function query(string $sql, ?array $params = null) : PDOStatement
+    {
+        if ($params == null) {
+            $query = $this->db->query($sql);
+        } else {
+            $query = $this->db->prepare($sql);
+            $query->execute($params);
+        }
+        return $query;
     }
-    
+ 
 }
