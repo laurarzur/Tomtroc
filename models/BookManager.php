@@ -75,7 +75,7 @@ class BookManager extends AbstractEntityManager {
      * @param int $id : l'id du livre.
      * @return Book|null : un objet Book ou null si le livre n'existe pas.
      */
-    public function getBookById(int $id) //: ?Book
+    public function getBookById(int $id) : ?Book
     {
         $sql = "SELECT * FROM book WHERE id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
@@ -91,7 +91,7 @@ class BookManager extends AbstractEntityManager {
      * @param int $id : l'id de l'utilisateur
      * @return array : un tableau d'objets Book.
      */ 
-    public function getAllAvailableBooksByOwner(int $id) //: array 
+    public function getAllAvailableBooksByOwner(int $id) : array 
     {
         $sql = "SELECT * FROM book WHERE available = 1 AND owner_id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
